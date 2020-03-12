@@ -89,8 +89,29 @@ if(Math.sign(n) === 1) {
 
 
 // 6. Get the integers within a range (x, y).
-// range(2,9); // [3,4,5,6,7,8]
+// range(2,9); // [3,4,5,6,7,8]  [3, -3]  [-9, -4]
+// [-8].concat(range(-8, -4))
+// 			[-7].concat(range(-7, -4))
+// 						[-6].concat(range(-6, -4))
+// 									[-5].concat(range(-5, -4))
+// 												return []
+// 									[-5].concat([]) = [-5]
+// 						[-6].concat([-5]) = [-6, -5]
+// 			[-7].concat([-6, -5]) = [-7, -6, -5]
+// [-8].concat([-7, -6, -5])
+
+
 var range = function(x, y) {
+  if(x === y || (x + 1) === y || (x - 1) === y) {
+  	return [];
+  }
+  if(x > y) {
+        return [(x - 1)].concat(range((x - 1), y));
+
+  } else if (x < y) {
+        return [(x + 1)].concat(range((x + 1), y));
+  }
+
 };
 
 // 7. Compute the exponent of a number.
