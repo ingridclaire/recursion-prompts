@@ -157,10 +157,31 @@ var powerOfTwo = function(n) {
 
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
+  if(string.length === 0) {
+    return '';
+  } else if(string.length === 1) {
+    return string[0];
+  }
+  let lastIndex = string.length - 1
+  let lastChar = string[lastIndex]
+  let slice = string.slice(0, lastIndex)
+  return lastChar + reverse(slice);
 };
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+  let newString = string.toLowerCase().split(' ').join('');
+  let lastIndex = newString.length -1;
+  let firstChar = newString[0];
+  let lastChar = newString[lastIndex];
+
+  if(newString.length === 0) {
+    return true;
+  } else if(firstChar !== lastChar) {
+    return false;
+  }
+  let slice = newString.slice(1, lastIndex);
+  return palindrome(slice);
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
